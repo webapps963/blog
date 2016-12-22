@@ -5,11 +5,25 @@
 <title>部落格</title>
 <meta charset="utf-8">
 <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+<link rel="stylesheet" href="{% static 'main/css/hi.css' %}">
 </head>
 <body>
 {% include 'main/menu.html' %}
-<h2>Django 說--Hello world!</h2>
-<p>{{ like }}</p>
-<p>現在時間:{{ now }}</p>
+<h1>最新消息</h1>
+{% for message in messages %}
+  <p {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</p>
+{% endfor %}
+<p><a class="btnn" href="{% url 'main:mainCreate' %}">新增最新消息</a></p>
+<br>
+{% for items in itemsList %}
+  {% for item in items %}
+    {% if forloop.first %}
+      <h2><a href="{% url 'main:mainRead' item.id %}">{{ item.title }}</a></h2>
+      <p>發表時間:{{ item.pubDateTime|date:'Y-m-d H:i' }}</p>
+      <div class=mainContent>{{ item.content|linebreaks|truncatechars_html:30 }}</div>
+    {% endif %}
+  {% endfor %}
+<hr>
+{% endfor %}
 </body>
 </html>

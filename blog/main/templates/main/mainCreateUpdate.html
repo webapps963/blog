@@ -1,0 +1,24 @@
+<!doctype html>
+{% load staticfiles %}
+<html>
+<head>
+<title>部落格</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+</head>
+<body>
+{% include 'main/menu.html' %}
+{% if main %}
+  <h3>修改最新消息</h3>
+  <form method="post" action="{% url 'main:mainUpdate' main.id %}">
+{% else %}
+  <h3>新增最新消息</h3>
+  <form method="post" action="{% url 'main:mainCreate' %}">
+{% endif %}  
+  {% csrf_token %}
+  {{ mainForm.as_p }}
+<input class="btnn" type="submit" value="送出">
+<a class="btnn" href="{% url 'main:main' %}">放棄</a>
+</form>
+</body>
+</html>

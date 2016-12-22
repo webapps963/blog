@@ -1,0 +1,20 @@
+<!doctype html>
+{% load staticfiles %}
+<html>
+<head>
+<title>部落格</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+<link rel="stylesheet" href="{% static 'main/css/hi.css' %}">
+</head>
+<body>
+{% include 'main/menu.html' %}
+{% for message in messages %}
+  <p {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</p>
+{% endfor %}
+<h3 class="inlineBlock">{{ main.title }}</h3>
+<a class="btnn inlineBlock" href="{% url 'main:mainUpdate' main.id %}">修改</a>
+<p>發表時間:{{ main.pubDateTime|date:'Y-m-d H:i' }}</p>
+<div class=mainContent>{{ main.content|linebreaks }}</div>
+</body>
+</html>
