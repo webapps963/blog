@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
 </head>
 <body>
+{% include 'main/topmenu.html' %}
 {% include 'main/menu.html' %}
 <h2>新增訂單</h2>
 {% for message in messages %}

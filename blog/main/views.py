@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404 
 from main.models import Main
 from main.forms import MainForm
 from django.contrib import messages
+from connection.views import admin_required
 import datetime
 
 def main(request):
@@ -22,6 +23,7 @@ def about(request):
     '''
     return render(request, 'main/about.html')
 
+@admin_required
 def mainCreate(request):
     '''
     Create a new article instance
@@ -55,7 +57,7 @@ def mainRead(request, mainId):
     }
     return render(request, 'main/mainRead.html', context)
 
-
+@admin_required
 def mainUpdate(request, mainId):
     '''
     Update the article instance:

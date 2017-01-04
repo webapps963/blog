@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 
 from order.forms import OrderForm
 from order.models import Order
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -12,6 +13,7 @@ def order(request):
     '''
     return render(request, 'order/order.html')
 
+@login_required
 def orderCreate(request):
     '''
     Create a new article instance

@@ -8,12 +8,15 @@
 <link rel="stylesheet" href="{% static 'main/css/hi.css' %}">
 </head>
 <body>
+{% include 'main/topmenu.html' %}
 {% include 'main/menu.html' %}
 {% for message in messages %}
   <p {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</p>
 {% endfor %}
 <h3 class="inlineBlock">{{ main.title }}</h3>
-<a class="btnn inlineBlock" href="{% url 'main:mainUpdate' main.id %}">修改</a>
+{% if user.is_superuser %}
+  <a class="btnn inlineBlock" href="{% url 'main:mainUpdate' main.id %}">修改</a>
+{% endif %}
 <p>發表時間:{{ main.pubDateTime|date:'Y-m-d H:i' }}</p>
 <div class=mainContent>{{ main.content|linebreaks }}</div>
 </body>

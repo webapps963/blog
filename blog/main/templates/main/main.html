@@ -8,12 +8,15 @@
 <link rel="stylesheet" href="{% static 'main/css/hi.css' %}">
 </head>
 <body>
+{% include 'main/topmenu.html' %}
 {% include 'main/menu.html' %}
 <h1>最新消息</h1>
 {% for message in messages %}
   <p {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</p>
 {% endfor %}
-<p><a class="btnn" href="{% url 'main:mainCreate' %}">新增最新消息</a></p>
+{% if user.is_superuser %}
+  <p><a class="btnn" href="{% url 'main:mainCreate' %}">新增最新消息</a></p>
+{% endif %}
 <br>
 {% for items in itemsList %}
   {% for item in items %}

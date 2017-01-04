@@ -1,0 +1,19 @@
+<!doctype html>
+{% load staticfiles %}
+<html>
+<head>
+<title>註冊</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+</head>
+<body>
+{% include 'main/menu.html' %}
+<h2>註冊</h2>
+<form method="post" action="{% url 'account:register' %}">
+  {% csrf_token %}
+  {{ userForm.as_p }}
+  {{ userProfileForm.as_p }}
+  <input type="submit" value="送出">
+</form>
+</body>
+</html>
