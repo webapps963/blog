@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^mainCreate/$', views.mainCreate, name='mainCreate'),
     url(r'^mainRead/(?P<mainId>[0-9]+)/$', views.mainRead, name='mainRead'),
     url(r'^mainUpdate/(?P<mainId>[0-9]+)/$', views.mainUpdate, name='mainUpdate'),
+    url(r'^mainSearch/$', views.mainSearch, name='mainSearch'),
 ]

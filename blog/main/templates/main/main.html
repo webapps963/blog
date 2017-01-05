@@ -2,7 +2,7 @@
 {% load staticfiles %}
 <html>
 <head>
-<title>部落格</title>
+<title>唐采印刷</title>
 <meta charset="utf-8">
 <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
 <link rel="stylesheet" href="{% static 'main/css/hi.css' %}">
@@ -14,10 +14,11 @@
 {% for message in messages %}
   <p {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</p>
 {% endfor %}
+{% include 'main/searchForm.html' %}
 {% if user.is_superuser %}
-  <p><a class="btnn" href="{% url 'main:mainCreate' %}">新增最新消息</a></p>
+  <p class="inlineBlock"><a class="btnn" href="{% url 'main:mainCreate' %}">新增最新消息</a></p>
 {% endif %}
-<br>
+<br><br><hr>
 {% for items in itemsList %}
   {% for item in items %}
     {% if forloop.first %}

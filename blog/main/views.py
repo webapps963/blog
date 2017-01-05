@@ -3,6 +3,7 @@ from main.models import Main
 from main.forms import MainForm
 from django.contrib import messages
 from connection.views import admin_required
+from django.db.models.query_utils import Q
 import datetime
 
 def main(request):
@@ -78,6 +79,19 @@ def mainUpdate(request, mainId):
     mainForm.save()
     messages.success(request, '最新消息已修改')
     return redirect('main:mainRead', mainId=mainId)
+
+
+def mainSearch(request):
+    '''
+    Search for articles:
+        1. Get the "searchTerm" from the HTML page
+        2. Use "searchTerm" for filtering
+    '''
+    searchTerm = request.GET.get('searchTerm')
+    mains = Main.objects.filter(Q(title__icontains=searchTerm) |
+                                Q(content__icontains=searchTerm))
+    context = {'mains':mains, 'searchTerm':searchTerm}
+    return render(request, 'main/mainSearch.html', context)
 
 
 

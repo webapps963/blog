@@ -30,5 +30,11 @@ def orderCreate(request):
     if not orderForm.is_valid():
         return render(request, template, {'orderForm':orderForm})
     orderForm.save()
-    messages.success(request, '文章已新增')
+    messages.success(request, '訂單已傳送')
     return redirect('order:order')
+
+
+
+
+
+

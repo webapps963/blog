@@ -10,6 +10,9 @@
 {% include 'main/topmenu.html' %}
 {% include 'main/menu.html' %}
 <h1>訂單</h1>
+{% for message in messages %}
+  <p {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</p>
+{% endfor %}
 <p><a class="btnn" href="{% url 'order:orderCreate' %}">新增訂單</a></p>
 </body>
 </html>
